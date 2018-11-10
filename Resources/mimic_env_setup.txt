@@ -1,0 +1,11 @@
+name: mimic
+dependencies:
+  - python=3.6
+  - selenium
+  - numpy
+  - pandas
+  - matplotlib
+  - scipy 
+  - scikit-learn
+  - jupyter
+  - datetime
