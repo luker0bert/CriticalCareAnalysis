@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<!--DEFINING THE HEADER TO CONTAIN BOOTSTRAP STYLING-->
+<head>
+    <meta charset="utf-8" />
+    <title>Leading Causes - Drill Causes</title>
+
+    <!-- d3 JavaScript -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <!-- Math-JS library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/5.0.0/math.min.js"></script>
+
+    <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!-- My personal stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    
+
+</head>
+
+<!--INDEX PAGE-->
+<body>
+    <!--NAVIGATION BAR TO BE USED ACROSS ALL PAGES-->
+    <nav class="navbar navbar-light" style="background-color:rgb(7, 18, 82)">
+            <div class="container">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"style="color:white">Home</a>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        </li>
+                        <li><a href="https://leading-causes-of-death.herokuapp.com/drill/start=1999/end=2016/state=Alabama" style="background:lightblue;color:white">Switch to "By State"</a></li>
+                        <li><a href="https://leading-causes-of-death.herokuapp.com/map/year=2016" style="color:white;">Map</a></li>
+                        <li><a href="https://leading-causes-of-death.herokuapp.com/drill/start=1999/end=2016/state=Alabama" style="color:white">Analysis</a></li>
+                        <li><a href="https://leading-causes-of-death.herokuapp.com/teampage"style="color:white">Team</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    <!-- PAGE SPECIFIC ELEMENTS BELOW -->
+
+<!-- Hidden html elements rendered by flask for grabbing year & state data to populate the js initializer with -->
+
+<div id="hiddenDrillStart" value="{{ dict.start }}"></div>
+<div id="hiddenDrillEnd" value="{{ dict.end }}"></div>
+<div id="hiddenDrillCause" value="{{ dict.cause }}"></div>
+
+<!-- Container for the Metadata panel -->
+    
+    <div class="container">
+        <div class="row">
+             <div class="col-md-2">
+                <div class="well" style="margin-top:20px">
+                    <h5>Select a Start Year:</h5>
+                    <select id="selStartYear"></select>
+                    <h5>Select an End Year:</h5>
+                    <select id="selEndYear"></select>
+                    <h5>Select a Cause:</h5>
+                    <select id="selCause"></select>
+                    <br><br>
+                    <input type=submit class='btn btn-primary' value='Filter Data' onclick=refreshDrillPage()>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <!-- Container for the tree map -->
+                <div id='tree' style="width: 900px; height: 500px;"></div>
+            </div>
+        </div>
+    
+
+
+<!-- Container for the line chart -->
+    <div class="row">
+        <div class="col-md-2">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Line Chart Filters:</h3>
+                </div>
+                <div class="panel-body">
+                    <select id="stateDrop0" onchange=onDropdownChange(this)></select>
+                    <br>
+                    <br>
+                    <select id="stateDrop1" onchange=onDropdownChange(this)></select>
+                    <br>
+                    <br>
+                    <select id="stateDrop2" onchange=onDropdownChange(this)></select>
+                    <br>
+                    <br>
+                    <select id="stateDrop3" onchange=onDropdownChange(this)></select>
+                    <br>
+                    <br>
+                    <select id="stateDrop4" onchange=onDropdownChange(this)></select>
+                    <br>
+                    <br>
+                    <select id="stateDrop5" onchange=onDropdownChange(this)></select>
+                    <br>
+                    <br>
+                    <select id="stateDrop6" onchange=onDropdownChange(this)></select>
+                    <br>
+                    <br>
+                    <select id="stateDrop7" onchange=onDropdownChange(this)></select>
+                    <br>
+                    <br>
+                    <select id="stateDrop8" onchange=onDropdownChange(this)></select>
+                    <br>
+                    <br>
+                    <select id="stateDrop9" onchange=onDropdownChange(this)></select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div id="linechart" style="margin-bottom: 50px;border: 5px solid #336699; overflow:auto;"></div>
+        </div>
+    </div>
+</div>
+
+<!--FOOTER TO BE USED ACROSS ALL PAGES-->
+<footer class="footer">
+    <!-- Footer Elements -->
+    <div class="container">
+        <br/>
+        <div class ="imgbox">
+            <img class = "float_text_left" src = "Picture2.png">
+        </div>
+        <br/>
+            
+        </div>
+</footer>
+
+<!-- THE FOLLOWING IS REQUIRED FOR BOOTSTRAP INTERACTIVE COMPONENTS -EX- DROPDOWNS. RECOMMENDED BOTTOM PLACEMENT FOR FASTER LOAD TIME-->
+
+    <!-- jQuery Bootstrap's JavaScript plugins -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</body>
+    <script src="{{ url_for('static', filename='js/drillCause/plotlyCause.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/drillCause/treeCause.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/drillCause/drillCause.js') }}"></script>
+
+
+
+
+</html>
