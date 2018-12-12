@@ -85,19 +85,25 @@
     <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 style = "text-align: center">Predicting Lab Values</h1>
+                    <h1 style = "text-align: center">Strategy</h1>
                     <hr>
-                    <p style = "text-align: center"> <em>Do you know what is killing America? We do.</em></p>
-                    <a href="#"><img class="center" src = "#"></a>
-                    <p style="text-align: center">At a first glance, the Southeast is at greater risk!</p><hr>
-                    <a href="#"><img class="center" src = "#"></a>
-                    <p style="text-align: center">Cancer and Heart Disease dominate the leading causes across the US</p><hr>
-                    <a href="#"><img class="center" src = "#"></a>
-                    <p style="text-align: center">However, it's important to understand the proportions, populations, and calculations.</p>
-                    <a href="#"><img class="center" src = "#"></a>
-                    <p style="text-align: center">Notice, while some leading causes are decreasing over time... </p><hr>
-                    <a href="#"><img class="center" src = "#"></a>
-                    <p style="text-align: center">... Others are increasing</p>
+                    <p style = "text-align: center"> <em>
+                            We are trying to classify mortality probability given a set of features
+                            From there, we are trying to predict LOS and TTD depending on the classification with the same set of features
+                            Therefore the strategy is: use a neural network and a multi-variate regression via a Supervised Learning (ML) model to classify and predict    
+                            </em></p>
+                    <h1 style = "text-align: center">Analysis</h1>
+                    <hr>
+                    <p style = "text-align: center"> <em>
+                        First, classify patients as likely to live or die
+                            The output should include probabilities as well as classes (0 & 1)
+                            The classifier and prediction models use the same input, 
+                            but in the future can be used for current patient data
+                            
+                            Then, predict LOS & DTD
+                            Multivariate regression
+                            A robust, scalable classifier and a rank of feature importance
+                            </em></p>       
                     
                 </div>
             </div>
