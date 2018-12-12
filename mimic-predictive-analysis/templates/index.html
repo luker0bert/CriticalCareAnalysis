@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right"></li>
                         <li><a href="https://mimic.physionet.org/" style="color:white">Data</a></li>
-                        <li><a href="https://mimic-predictive-analysis.herokuapp.com/teampage"style="color:white">Team</a></li>
+                        <li><a href="/teampage"style="color:white">Team</a></li>
                         </ul>
                 </div>
             </div>
@@ -51,13 +51,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 style = "text-align: center">Overview</h1>
+                <h1 style = "text-align: center">Overview & Hypothesis</h1>
                 <hr>
                 <p style = "text-align: center"> The MIMIC-III (Medical Information Mart for Intensive Care) 
                     Clinical Database contains comprehensive clinical data from 40,000+ 
                     Intensive Care Unit (ICU) patients. This data is analyzed for predictive analysis 
                     and machine learning purposes.
-                    </p>
+                </p>
                 <p style = "text-align: center">
                     <ul>
                     <li>Can this model improve patient care and potentially save lives?</li>
@@ -65,7 +65,8 @@
                     <li>Can we understand and optimize patient throughput?</li>
                     </ul>
                 </p> 
-                <h1 style = "text-align: center">Hypothesis</h1>
+                <p style = "text-align: center"><em>MIMIC Database: Table Structure</em></p>
+                <a href="#"><img class="center" src = "https://github.com/luker0bert/CriticalCareAnalysis/blob/master/mimic-predictive-analysis/static/images/tables.png?raw=true"></a>
                 <hr>
                 <p style = "text-align: center">
                     <ul>
@@ -77,20 +78,17 @@
         </div>
     </div>    
 
-    <!-- CONTAINER 2: RESULTS -->
+    <!-- CONTAINER 2: STRATEGY -->
     <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <h1 style = "text-align: center">Strategy</h1>
                     <hr>
-                    <p style = "text-align: center"> <em>
+                    <p style = "text-align: center">
                             We are trying to classify mortality probability given a set of features
                             From there, we are trying to predict LOS and TTD depending on the classification with the same set of features
                             Therefore the strategy is: use a neural network and a multi-variate regression via a Supervised Learning (ML) model to classify and predict    
-                            </em></p>
-                    <a href="#"><img class="center" src = "#"></a>
-                    <h1 style = "text-align: center">Analysis</h1>
-                    <hr>
+                    </p>
                     <p style = "text-align: center"> <em> This paradigm represents the project process
                             </em></p> 
                     <a href="#"><img class="center" src = "https://github.com/luker0bert/CriticalCareAnalysis/blob/master/mimic-predictive-analysis/static/images/paradigm.png?raw=true"></a>              
@@ -98,6 +96,23 @@
                 </div>
             </div>
         </div> 
+
+ <!-- CONTAINER 3: RESULTS -->
+ <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 style = "text-align: center">Results</h1>
+                <hr>
+                <p style = "text-align: center">
+                    <ol>
+                        <li>Insert here: Predicting Death</li>
+                        <li>Insert here: Predicting Days to Death</li>
+                        <li>Insert here: Predicting Length of Stay</li>
+                    </ol> 
+                </p>         
+            </div>
+        </div>
+    </div> 
 
     <!--CONTAINER 3: RESOURCES-->  
     <div class="container">

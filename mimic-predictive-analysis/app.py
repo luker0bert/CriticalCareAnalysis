@@ -10,7 +10,6 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
-from initdb import create_db, engine
 
 #################################################
 # Initialize Flask
@@ -48,7 +47,7 @@ def teampage():
 @app.route("/data")
 def data():
     """Return the data."""
-    return "data links here"
+    return "data links go here"
 
 # @app.route("/data/labs")
 # def datalabs():
