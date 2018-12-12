@@ -18,32 +18,22 @@ from initdb import create_db, engine
 
 app = Flask(__name__)
 
-# initialize db here
-
-
 #################################################
 # Database Setup
 #################################################
 
-# engine = create_engine("sqlite:///db/deaths.db")
-# reflect an existing database into a new model
+engine = create_engine("sqlite:///db/mimic.db")
+
+#reflect an existing database into a new model
 Base = automap_base()
+
 # reflect the tables
 Base.prepare(engine, reflect=True)
+
 # Save reference to each table
-deaths = Base.classes.cause_o_death
-
-@app.before_first_request
-def bfr():
-    create_db()
-#     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/deaths.db'
-# # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
-#     db = SQLAlchemy(app)
-
-
-#     db.drop_all()
-
-    # create_db()
+labs = Base.classes.labsNew
+survived = Base.classes.survived
+died = Base.classes.died
 
 @app.route("/")
 def index():
@@ -52,200 +42,110 @@ def index():
 
 @app.route("/teampage")
 def teampage():
-    """Return the homepage."""
+    """Return the teampage."""
     return render_template("teampage.html")
 
-@app.route("/map/year=<year>")
-def mapper(year):
+# @app.route("/data/labs")
+# def data():
+#     session = Session(engine)
+#     results = session.query(labs).all()
 
-    yearDict = {"year": year}
+#     all_data = []
+#     for labs in results:
+#         labs_dict = {}
+    #     labs_dict["SUBJECT_ID"] = labs.SUBJECT_ID
+    #     labs_dict["HADM_ID"] = labs.HADM_ID
+    #     labs_dict["Albumin"] = labs.Albumin
+    #     labs_dict["Anion Gap"] = labs.Anion Gap
+    #     labs_dict["Bicarbonate"] = labs.Bicarbonate
+    #     labs_dict["Bilirubin, Total"] = labs.['Bilirubin, Total']
+    #     labs_dict["Chloride"] = labs.Chloride
+    #     labs_dict["Chloride, Whole Blood"] = labs.Chloride, Whole Blood
+    #     labs_dict["Creatinine"] = labs.Creatinine
+    #     labs_dict["Glucose_Blood_Gas"] = labs.Glucose_Blood_Gas
+    #     labs_dict["Glucose_Chemistry"] = labs.Glucose_Chemistry
+    #     labs_dict["Hematocrit"] = labs.Hematocrit
+    #     labs_dict["Hematocrit, Calculated"] = labs.Hematocrit, Calculated
+    #     labs_dict["Hemoglobin_Blood_Gas"] = labs.
+    #     labs_dict["Hemoglobin_Hematology"] = labs.
+    #     labs_dict["INR(PT)"] = labs.
+    #     labs_dict["Lactate"] = labs.
+    #     labs_dict["Magnesium"] = labs.
+    #     labs_dict["PT"] = labs.
+    #     labs_dict["PTT"] = labs.
+    #     labs_dict["Phosphate"] = labs.
+    #     labs_dict["Platelet Count"] = labs.
+    #     labs_dict["Potassium"] = labs.
+    #     labs_dict["Potassium, Whole Blood"] = labs.
+    #     labs_dict["Sodium"] = labs.
+    #     labs_dict["Sodium, Whole Blood"] = labs.
+    #     labs_dict["Urea Nitrogen"] = labs.
+    #     labs_dict["White Blood Cells"] = labs.
+    #     all_data.append(labs_dict)
 
-    return render_template("choropleth.html", dict=yearDict)
+    # return jsonify(all_data)
 
-@app.route("/drill/start=<start>/end=<end>/state=<state>")
-def driller(start,end,state):
+# @app.route("/data/died")
+# def data():
+#     session = Session(engine)
+#     results = session.query(died).all()
 
-    valuesDict = {"start": start, "end": end, "state": state}
+#     all_data = []
+#     for died in results:
+#         died_dict = {}
+    #     died_dict["ROW_ID"] = died.ROW_ID
+    #     died_dict["SUBJECT_ID"] = died.SUBJECT_ID
+    #     died_dict["HADM_ID"] = died.HADM_ID
+    #     died_dict["ADMITTIME"] = died.ADMITTIME
+    #     died_dict["DEATHTIME"] = died.DEATHTIME
+    #     died_dict["ADMISSION_TYPE"] = died.ADMISSION_TYPE
+    #     died_dict["ADMISSION_LOCATION"] = died.ADMISSION_LOCATION
+    #     died_dict["DISCHARGE_LOCATION"] = died.DISCHARGE_LOCATION
+    #     died_dict["INSURANCE"] = died.INSURANCE
+    #     died_dict["LANGUAGE"] = died.LANGUAGE
+    #     died_dict["RELIGION"] = died.RELIGION
+    #     died_dict["MARITAL_STATUS"] = died.MARITAL_STATUS
+    #     died_dict["ETHNICITY"] = died.ETHNICITY
+    #     died_dict["EDREGTIME"] = died.EDREGTIME
+    #     died_dict["EDOUTTIME"] = died.EDOUTTIME
+    #     died_dict["DIAGNOSIS"] = died.DIAGNOSIS
+    #     died_dict["HOSPITAL_EXPIRE_FLAG"] = died.HOSPITAL_EXPIRE_FLAG
+    #     died_dict["HAS_CHARTEVENTS_DATA"] = died.HAS_CHARTEVENTS_DATA
+    #     died_dict["DAYS_TO_DEATH"] = died.DAYS_TO_DEATH
+    #     all_data.append(died_dict)
 
-    return render_template("drill.html", dict=valuesDict)
+    # return jsonify(all_data)
 
-@app.route("/drillCause/start=<start>/end=<end>/cause=<cause>")
-def drillCause(start,end,cause):
+    # @app.route("/data/died")
+# def data():
+#     session = Session(engine)
+#     results = session.query(survived).all()
 
-    valuesDict = {"start": start, "end": end, "cause": cause}
+#     all_data = []
+#     for survived in results:
+#         survived_dict = {}
+    #     survived_dict["ROW_ID"] = survived.ROW_ID
+    #     survived_dict["SUBJECT_ID"] = survived.SUBJECT_ID
+    #     survived_dict["HADM_ID"] = survived.HADM_ID
+    #     survived_dict["ADMITTIME"] = survived.ADMITTIME
+    #     survived_dict["DEATHTIME"] = survived.DEATHTIME
+    #     survived_dict["ADMISSION_TYPE"] = survived.ADMISSION_TYPE
+    #     survived_dict["ADMISSION_LOCATION"] = survived.ADMISSION_LOCATION
+    #     survived_dict["DISCHARGE_LOCATION"] = survived.DISCHARGE_LOCATION
+    #     survived_dict["INSURANCE"] = survived.INSURANCE
+    #     survived_dict["LANGUAGE"] = survived.LANGUAGE
+    #     survived_dict["RELIGION"] = survived.RELIGION
+    #     survived_dict["MARITAL_STATUS"] = survived.MARITAL_STATUS
+    #     survived_dict["ETHNICITY"] = survived.ETHNICITY
+    #     survived_dict["EDREGTIME"] = survived.EDREGTIME
+    #     survived_dict["EDOUTTIME"] = survived.EDOUTTIME
+    #     survived_dict["DIAGNOSIS"] = survived.DIAGNOSIS
+    #     survived_dict["HOSPITAL_EXPIRE_FLAG"] = survived.HOSPITAL_EXPIRE_FLAG
+    #     survived_dict["HAS_CHARTEVENTS_DATA"] = survived.HAS_CHARTEVENTS_DATA
+    #     survived_dict["LENGTH_OF_STAY"] = survived.LENGTH_OF_STAY
+    #     all_data.append(survived_dict)
 
-    return render_template("drillCause.html", dict=valuesDict)
-
-@app.route("/data")
-def data():
-    session = Session(engine)
-    results = session.query(deaths).all()
-
-    all_data = []
-    for death in results:
-        death_dict = {}
-        death_dict["id"] = death.id
-        death_dict["year"] = death.year
-        death_dict["state"] = death.state
-        death_dict["cause"] = death.cause
-        death_dict["deaths"] = death.deaths
-        death_dict["death_rate"] = death.death_rate
-        all_data.append(death_dict)
-
-    return jsonify(all_data)
-
-# #********************
-# # TESTING
-# #********************
-
-
-@app.route("/data/year=<year>")
-# CHOROPLETH: all states, single year, and cause of death
-def year(year):
-    session = Session(engine)
-
-    #placeholder for selection statement, so we don't return the entire table and slow down query
-
-    results = session.query(deaths).filter(deaths.year == year).all()
-
-    all_data = []
-    for death in results:
-        death_dict = {}
-        death_dict["id"] = death.id
-        death_dict["year"] = death.year
-        death_dict["state"] = death.state
-        death_dict["cause"] = death.cause
-        death_dict["deaths"] = death.deaths
-        death_dict["death_rate"] = death.death_rate
-        all_data.append(death_dict)
-
-    return jsonify(all_data)
-
-#@app.route("/data/<year>", defaults={"cause":None})
-@app.route("/data/year=<year>/cause=<cause>")
-# CHOROPLETH: all states, single year, and cause of death
-def yearcause(year, cause):
-    session = Session(engine)
-
-    #placeholder for selection statement, so we don't return the entire table and slow down query
-
-    results = session.query(deaths).filter(deaths.year == year).filter(deaths.cause == cause).all()
-
-    all_data = []
-    for death in results:
-        death_dict = {}
-        death_dict["id"] = death.id
-        death_dict["year"] = death.year
-        death_dict["state"] = death.state
-        death_dict["cause"] = death.cause
-        death_dict["deaths"] = death.deaths
-        death_dict["death_rate"] = death.death_rate
-        all_data.append(death_dict)
-
-    return jsonify(all_data)
-
-@app.route("/data/year=<year>/state=<state>")
-# CHOROPLETH: all states, single year, and cause of death
-def yearstate(year,state):
-    session = Session(engine)
-
-    #placeholder for selection statement, so we don't return the entire table and slow down query
-
-    results = session.query(deaths).filter(deaths.year == year).filter(deaths.state == state).all()
-
-    all_data = []
-    for death in results:
-        death_dict = {}
-        death_dict["id"] = death.id
-        death_dict["year"] = death.year
-        death_dict["state"] = death.state
-        death_dict["cause"] = death.cause
-        death_dict["deaths"] = death.deaths
-        death_dict["death_rate"] = death.death_rate
-        all_data.append(death_dict)
-
-    return jsonify(all_data)
-
-@app.route("/data/state=<state>")
-# CHOROPLETH: all states, single year, and cause of death
-def state(year,state):
-    session = Session(engine)
-
-    #placeholder for selection statement, so we don't return the entire table and slow down query
-
-    results = session.query(deaths).filter(deaths.state == state).all()
-
-    all_data = []
-    for death in results:
-        death_dict = {}
-        death_dict["id"] = death.id
-        death_dict["year"] = death.year
-        death_dict["state"] = death.state
-        death_dict["cause"] = death.cause
-        death_dict["deaths"] = death.deaths
-        death_dict["death_rate"] = death.death_rate
-        all_data.append(death_dict)
-
-    return jsonify(all_data)
-
-@app.route("/data/start=<start>/end=<end>/state=<state>")
-# CHOROPLETH: all states, single year, and cause of death
-def yearrangestate(start,end,state):
-    session = Session(engine)
-
-    #placeholder for selection statement, so we don't return the entire table and slow down query
-
-    results = session.query(deaths).filter(deaths.year >= start).filter(deaths.year <= end).filter(deaths.state == state).all()
-
-    all_data = []
-    for death in results:
-        death_dict = {}
-        death_dict["id"] = death.id
-        death_dict["year"] = death.year
-        death_dict["state"] = death.state
-        death_dict["cause"] = death.cause
-        death_dict["deaths"] = death.deaths
-        death_dict["death_rate"] = death.death_rate
-        all_data.append(death_dict)
-
-    return jsonify(all_data)
-
-@app.route("/data/start=<start>/end=<end>/cause=<cause>")
-# CHOROPLETH: all states, single year, and cause of death
-def yearrangecause(start,end,cause):
-    session = Session(engine)
-
-    #placeholder for selection statement, so we don't return the entire table and slow down query
-
-    results = session.query(deaths).filter(deaths.year >= start).filter(deaths.year <= end).filter(deaths.cause == cause).all()
-
-    all_data = []
-    for death in results:
-        death_dict = {}
-        death_dict["id"] = death.id
-        death_dict["year"] = death.year
-        death_dict["state"] = death.state
-        death_dict["cause"] = death.cause
-        death_dict["deaths"] = death.deaths
-        death_dict["death_rate"] = death.death_rate
-        all_data.append(death_dict)
-
-    return jsonify(all_data)
-
-@app.route("/data/allstates")
-# CHOROPLETH: all states, single year, and cause of death
-def allstates():
-    session = Session(engine)
-
-    #placeholder for selection statement, so we don't return the entire table and slow down query
-
-    results = session.query(deaths.state).distinct()
-    data = []
-    for result in results:
-        data.append(result[0])
-    return jsonify(data)
-
-# USER TABE: year, state, cause
+    # return jsonify(all_data)
 
 if __name__ == "__main__":
     app.run()
