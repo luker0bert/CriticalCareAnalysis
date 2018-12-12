@@ -58,6 +58,13 @@
                     Intensive Care Unit (ICU) patients. This data is analyzed for predictive analysis 
                     and machine learning purposes.
                     </p>
+                <p style = "text-align: center">
+                    <ul>
+                    <li>Can this model improve patient care and potentially save lives?</li>
+                    <li>Can we prioritize important clinical measures at the time of patient admission?</li>
+                    <li>Can we understand and optimize patient throughput?</li>
+                    </ul>
+                </p> 
                 <h1 style = "text-align: center">Hypothesis</h1>
                 <hr>
                 <p style = "text-align: center">
@@ -65,17 +72,7 @@
                     <li><strong>Ho:</strong> The first blood lab events are not good predictors for classifying likelihood of mortality and subsequent information. </li>
                     <li><strong>Ha:</strong> We can classify patients as likely to die and predict their length of stay (LOS) or days to death (DTD) based on their first blood labs on admission. </li>
                     </ul>
-                    </p>    
-                <h1 style = "text-align: center">Business Case</h1>
-                <hr>
-                <p style = "text-align: center">
-                    <ul>
-                    <li>Can this model improve patient care and potentially save lives?</li>
-                    <li>Can we prioritize important clinical measures at the time of patient admission?</li>
-                    <li>Can we understand and optimize patient throughput?</li>
-                    </ul>
                 </p>    
-                
             </div>
         </div>
     </div>    
@@ -91,19 +88,13 @@
                             From there, we are trying to predict LOS and TTD depending on the classification with the same set of features
                             Therefore the strategy is: use a neural network and a multi-variate regression via a Supervised Learning (ML) model to classify and predict    
                             </em></p>
+                    <a href="#"><img class="center" src = "#"></a>
                     <h1 style = "text-align: center">Analysis</h1>
                     <hr>
-                    <p style = "text-align: center"> <em>
-                        First, classify patients as likely to live or die
-                            The output should include probabilities as well as classes (0 & 1)
-                            The classifier and prediction models use the same input, 
-                            but in the future can be used for current patient data
+                    <p style = "text-align: center"> <em> This paradigm represents the project process
+                            </em></p> 
+                    <a href="#"><img class="center" src = "https://github.com/luker0bert/CriticalCareAnalysis/blob/master/mimic-predictive-analysis/static/images/paradigm.png?raw=true"></a>              
                             
-                            Then, predict LOS & DTD
-                            Multivariate regression
-                            A robust, scalable classifier and a rank of feature importance
-                            </em></p>       
-                    
                 </div>
             </div>
         </div> 
@@ -118,31 +109,19 @@
         </div>
         <div class="row" style="background-color: white">
             <div class="col-md-3">
-                <a class="ic" href = "#">
-                    <i class="fas fa-chart-bar fa-10x" style="display:inline-block; text-align:center"></i>
-                </a>
+                    <a href = "https://mimic.physionet.org/">
+                        <img class="center" 
+                        src = "https://github.com/luker0bert/CriticalCareAnalysis/blob/master/mimic-predictive-analysis/static/images/mimic.png?raw=true"></a>
             </div>
             <div class="col-md-9">   
                 <p>
                 <strong>Collaborative research - </strong> MIMIC is an openly available dataset developed 
                 by the MIT Lab for Computational Physiology, comprising deidentified health data 
                 associated with ~40,000 critical care patients. It includes demographics, vital signs, 
-                laboratory tests, medications, and more.
-                </p>
-            </div>
-        </div>
-        <div class="row" style="background-color: white">
-            <div class="col-md-3">
-                <a href = "https://catalog.data.gov/dataset/age-adjusted-death-rates-for-the-top-10-leading-causes-of-death-united-states-2013">
-                    <img class="center-small" 
-                    src = "https://github.com/Jccommander/LeadingCausesofDeathUSA/blob/master/leading-causes-of-death/static/images/HHS.jpg?raw=true"></a>
-            </div>
-            <div class="col-md-9">   
-                <p>
-                <strong>Citation - </strong>MIMIC-III, a freely accessible critical care database. 
+                laboratory tests, medications, and more. Citation - MIMIC-III, a freely accessible critical care database. 
                 Johnson AEW, Pollard TJ, Shen L, Lehman L, Feng M, Ghassemi M, Moody B, Szolovits P, Celi LA, 
-                and Mark RG. Scientific Data (2016). DOI: 10.1038/sdata.2016.35. Available 
-                <a href="http://www.nature.com/articles/sdata201635">here</a>.</p>
+                and Mark RG. Scientific Data (2016). DOI: 10.1038/sdata.2016.35. Available <a href="http://www.nature.com/articles/sdata201635">here</a>.</p>
+                </p>
             </div>
         </div>
         <row>
