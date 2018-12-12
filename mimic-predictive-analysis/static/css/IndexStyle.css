@@ -121,7 +121,7 @@ ul.nav a:hover {
   padding: 20px;
   margin: 0;
   background: black;
-  background-image: url("#");
+  background-image: url("https://github.com/luker0bert/CriticalCareAnalysis/blob/master/mimic-predictive-analysis/static/images/parallax.png?raw=true");
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
