@@ -4,13 +4,10 @@
 <!--DEFINING THE HEADER TO CONTAIN BOOTSTRAP STYLING-->
 <head>
     <meta charset="utf-8">
-    <title>Leading Causes</title>
+    <title>Mimic Analysis</title>
     
     <!-- d3 JavaScript -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
-
-    <!-- Leaflet-Choropleth JavaScript
-    <script type="text/javascript" src="../static/js/choropleth/choropleth.js"></script> -->
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -19,18 +16,11 @@
     <!-- Personal stylesheets -->
     <link rel="stylesheet" href="../static/css/IndexStyle.css">
     <!-- <link rel="stylesheet" href="../static/css/choroplethStyle.css"> -->
-
-    <!-- Leaflet CSS & JS
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
-    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
-    crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
-    integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
-    crossorigin=""></script> -->
 </head>
 
 <!--INDEX PAGE-->
 <body>
+
     <!--NAVIGATION BAR TO BE USED ACROSS ALL PAGES-->
     <nav class="navbar navbar-light">
             <div class="container">
@@ -40,99 +30,100 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-            <a class="navbar-brand" href="/"style="color:white">Home</a>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right"></li>
-                    <li><a href="https://leading-causes-of-death.herokuapp.com/map/year=2016" style="color:white;">Map</a></li>
-                    <li><a href="https://leading-causes-of-death.herokuapp.com/drill/start=1999/end=2016/state=Alabama" style="color:white">Analysis</a></li>
-                    <li><a href="https://leading-causes-of-death.herokuapp.com/teampage"style="color:white">Team</a></li>
-                    </ul>
-            </div>
+                <a class="navbar-brand" href="/"style="color:white">Home</a>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right"></li>
+                        <li><a href="https://mimic.physionet.org/" style="color:white">Data</a></li>
+                        <li><a href="https://leading-causes-of-death.herokuapp.com/teampage"style="color:white">Team</a></li>
+                        </ul>
+                </div>
             </div>
         </nav>
 
         <div class="hero text-center">
-            <h1>LEADING CAUSES</h1>
-            <p>Health begins with knowledge</p>
+            <h1>Predicting Length of Stay</h1>
+            <p>Using the MIMIC Critical Care Database</p>
             <a href="#explore" class="btn btn-circle js-scroll-trigger">
                 <i class="fa fa-angle-double-down animated"></i>
             </a>
         </div>
 
-    <!-- ROW 2: Choropleth Object -->
+    <!-- CONTAINER 1: PREMISE -->
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 style = "text-align: center">Know.</h1>
+                <h1 style = "text-align: center">Overview</h1>
                 <hr>
-                <p style = "text-align: center"> <em>Do you know what is killing America? We do.</em></p>
-                <a href="#"><img class="center" src = "https://github.com/Jccommander/LeadingCausesofDeathUSA/blob/master/leading-causes-of-death/static/images/conclusion_map.png?raw=true"></a>
-                <p style="text-align: center">At a first glance, the Southeast is at greater risk!</p><hr>
-                <a href="#"><img class="center" src = "https://github.com/Jccommander/LeadingCausesofDeathUSA/blob/master/leading-causes-of-death/static/images/all_diseases.png?raw=true"></a>
-                <p style="text-align: center">Cancer and Heart Disease dominate the leading causes across the US</p><hr>
-                <a href="#"><img class="center" src = "https://github.com/Jccommander/LeadingCausesofDeathUSA/blob/master/leading-causes-of-death/static/images/conclusion_treemap.png?raw=true"></a>
-                <p style="text-align: center">However, it's important to understand the proportions, populations, and calculations.</p>
-                <a href="#"><img class="center" src = "https://github.com/Jccommander/LeadingCausesofDeathUSA/blob/master/leading-causes-of-death/static/images/cancer.png?raw=true"></a>
-                <p style="text-align: center">Notice, while some leading causes are decreasing over time... </p><hr>
-                <a href="#"><img class="center" src = "https://github.com/Jccommander/LeadingCausesofDeathUSA/blob/master/leading-causes-of-death/static/images/alzh.png?raw=true"></a>
-                <p style="text-align: center">... Others are increasing</p>
+                <p style = "text-align: center"> The MIMIC-III (Medical Information Mart for Intensive Care) 
+                    Clinical Database contains comprehensive clinical data from 40,000+ 
+                    Intensive Care Unit (ICU) patients. This data is analyzed for predictive analysis 
+                    and machine learning purposes.
+                    </p>
+                <h1 style = "text-align: center">Hypothesis</h1>
+                <hr>
+                <p style = "text-align: center">
+                    <ul>
+                    <li><strong>Ho:</strong> The first blood lab events are not good predictors for classifying likelihood of mortality and subsequent information. </li>
+                    <li><strong>Ha:</strong> We can classify patients as likely to die and predict their length of stay (LOS) or days to death (DTD) based on their first blood labs on admission. </li>
+                    </ul>
+                    </p>    
+                <h1 style = "text-align: center">Business Case</h1>
+                <hr>
+                <p style = "text-align: center">
+                    <ul>
+                    <li>Can this model improve patient care and potentially save lives?</li>
+                    <li>Can we prioritize important clinical measures at the time of patient admission?</li>
+                    <li>Can we understand and optimize patient throughput?</li>
+                    </ul>
+                </p>    
                 
             </div>
         </div>
     </div>    
 
-    <!--ROW 2: EXPLORE-->    
-    <div class="container" id="explore">
-        <div class="row">
-            <div class="col-md-12"  style = "
-                background-color: white;
-                padding-left: auto;
-                padding-top: 10px;
-                padding-right: auto;
-                padding-bottom: 0px;
-                margin-left: auto;
-                margin-right: auto;
-                margin-top: 15px;
-                margin-bottom: 0px;
-                border-bottom: 0px"
-            }>
-                <h1 style = "text-align: center">Explore.</h1>
-                <hr>
-                <p style = "text-align: center; margin-bottom: 0px"> 
-                <em>Discover more with the visualizations.</em><br/>
-                </p>
+    <!-- CONTAINER 2: RESULTS -->
+    <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 style = "text-align: center">Predicting Lab Values</h1>
+                    <hr>
+                    <p style = "text-align: center"> <em>Do you know what is killing America? We do.</em></p>
+                    <a href="#"><img class="center" src = "#"></a>
+                    <p style="text-align: center">At a first glance, the Southeast is at greater risk!</p><hr>
+                    <a href="#"><img class="center" src = "#"></a>
+                    <p style="text-align: center">Cancer and Heart Disease dominate the leading causes across the US</p><hr>
+                    <a href="#"><img class="center" src = "#"></a>
+                    <p style="text-align: center">However, it's important to understand the proportions, populations, and calculations.</p>
+                    <a href="#"><img class="center" src = "#"></a>
+                    <p style="text-align: center">Notice, while some leading causes are decreasing over time... </p><hr>
+                    <a href="#"><img class="center" src = "#"></a>
+                    <p style="text-align: center">... Others are increasing</p>
+                    
+                </div>
             </div>
-        </div>
-        <div class="row">     
-            <div class="col-md-4">
-                <!-- Source JSON --> 
-                <a class="ic" href = "https://leading-causes-of-death.herokuapp.com/data">
-                    <i class="fas fa-heartbeat fa-10x" style="display:inline-block; text-align:center"> </i>
-                </a>
-                <p style = "text-align: center; margin-bottom: 0px">Access the data</p><br>
-            </div>
-            <div class="col-md-4">
-                <a class="ic" href = "https://leading-causes-of-death.herokuapp.com/map/year=2016">
-                    <i class="fas fa-map-marked-alt fa-10x" style="display:inline-block; text-align:center"></i>
-                </a>
-                <p style = "text-align: center; margin-bottom: 0px">Map the causes</p><br>
-                </div>   
-            <div class="col-md-4">
-                <a class="ic" href = "https://leading-causes-of-death.herokuapp.com/drill/start=1999/end=2016/state=Alabama">
-                    <i class="fas fa-chart-bar fa-10x" style="display:inline-block; text-align:center"></i>
-                </a>
-                <p style = "text-align: center; margin-bottom: 0px">Visualize the results</p><br>
-            </div>
-        </div>     
-    </div>
+        </div> 
 
-    <!--ROW 3: RESOURCES-->  
+    <!--CONTAINER 3: RESOURCES-->  
     <div class="container">
         <div class="row">
             <div class="col-md-12" style = "padding-top: 20px">
-                <h1 style = "text-align: center">Learn.</h1>
+                <h1 style = "text-align: center">The MIMIC Project</h1>
                 <hr>
-                <p style = "text-align: center"><em>How can we improve? Take the initiative.</em></p>
+            </div>
+        </div>
+        <div class="row" style="background-color: white">
+            <div class="col-md-3">
+                <a class="ic" href = "#">
+                    <i class="fas fa-chart-bar fa-10x" style="display:inline-block; text-align:center"></i>
+                </a>
+            </div>
+            <div class="col-md-9">   
+                <p>
+                <strong>Collaborative research - </strong> MIMIC is an openly available dataset developed 
+                by the MIT Lab for Computational Physiology, comprising deidentified health data 
+                associated with ~40,000 critical care patients. It includes demographics, vital signs, 
+                laboratory tests, medications, and more.
+                </p>
             </div>
         </div>
         <div class="row" style="background-color: white">
@@ -143,42 +134,17 @@
             </div>
             <div class="col-md-9">   
                 <p>
-                <strong>STEP 1: DIG DEEPER - </strong>Go deeper into the data and learn more. This data is provided by the Centers for Disease Control's (CDC) and National Center for Health Statistics (NCHS), and it
-                is based on information from all resident death certificates filed in the 50 states 
-                and the District of Columbia using demographic and medical characteristics.
-                Causes of death are classified by the International Classification of Diseases, Tenth Revision (ICD–10). <em>See if there are other leading indicators that could help improve our understanding of this dataset!</em>
-                For more information. <a href="https://catalog.data.gov/dataset/age-adjusted-death-rates-for-the-top-10-leading-causes-of-death-united-states-2013">Visit NCHS to access the source data</a>.</p>
-            </div>
-        </div>
-        <div class="row" style="background-color: white">   
-            <div class="col-md-3">
-                <a href = "https://www.usnews.com/topics/subjects/public_health">
-                    <img class="center-small" 
-                    src = "https://github.com/Jccommander/LeadingCausesofDeathUSA/blob/master/leading-causes-of-death/static/images/usnews.png?raw=true"></a>
-            </div>
-            <div class="col-md-9">
-                <p><strong>STEP 2: STAY INFORMED - </strong> Utilize frequently updated resources and reports made available to the public. 
-                    By reading reports on health statistics, you can become aware of changes in population health as well as updates in medical innovation.
-                    US News & Health is one of many resources available for this information. <em>Stay informed on statistics and changes in Healthcare!</em><a href="https://www.usnews.com/topics/subjects/public_health"> Visit US News & Health Report for more information</a>.</p>
-            </div>
-        </div>
-        <div class="row" style="background-color: white">  
-            <div class="col-md-3">
-                <a href = "https://www.cdc.gov/healthcommunication/toolstemplates/entertainmented/tips/PreventiveHealth.html">
-                    <img class="center-small" 
-                    src = "https://github.com/Jccommander/LeadingCausesofDeathUSA/blob/master/leading-causes-of-death/static/images/CDC.png?raw=true"></a>
-            </div>
-            <div class="col-md-9">
-                <p><strong>STEP 3: USE RESOURCES - </strong> Preventative health is often overlooked in a our society focused on reactive medicine.
-                    However, proactivity is becoming more prevalent as the public is becoming more aware and the reimbursement/payment models are shifting.
-                    Use studies provided by organizations like the CDC to find out more about what you can do to reduce risk factors - 
-                    <em>especially in the ten areas reported on in this analysis!</em><a href="https://www.cdc.gov/healthcommunication/toolstemplates/entertainmented/tips/PreventiveHealth.html"> Visit the CDC for more information</a>.</p>
+                <strong>Citation - </strong>MIMIC-III, a freely accessible critical care database. 
+                Johnson AEW, Pollard TJ, Shen L, Lehman L, Feng M, Ghassemi M, Moody B, Szolovits P, Celi LA, 
+                and Mark RG. Scientific Data (2016). DOI: 10.1038/sdata.2016.35. Available 
+                <a href="http://www.nature.com/articles/sdata201635">here</a>.</p>
             </div>
         </div>
         <row>
             <div class="col-md-12" style="background-color: transparent"></div>
         </row>
     </div>
+
     
 <!--FOOTER TO BE USED ACROSS ALL PAGES-->
 <footer class="footer">
@@ -189,7 +155,7 @@
         <div class="footer-copyright text-center py-3"><font color="white">© 2018 Copyright: Jeffrey Box, John Commander, John Giglio, Bill Magill, & Luke Williams</font><br/><br/>
             <div class="mb-5 flex-center">
                 <!-- Github -->
-                <a class="ic" href = "https://github.com/Jccommander/LeadingCausesofDeathUSA">
+                <a class="ic" href = "https://github.com/">
                     <i class="fab fa-github fa-3x" style="color:white"></i></a>
                 <!-- 
                 <a class="ic" href = "https://bootcamp.pe.gatech.edu/data/lp1/?s=Google-Unbranded&dki=Data%20Science&utm_cost=0&trkid=V3ADW427502_53882828873_aud-489106722912:kwd-304086169812__253238998067_g_c__&mkwid=TCVWe2l0_dc&pkw=%2Bdata%20%2Bscientist%20%2Bsalary&pcrid=253238998067&pmt=b&utm_source=google&utm_medium=cpc&utm_campaign=%5BS%5D+Data+-+Data+Sciencet+-+&utm_term=%2Bdata%20%2Bscientist%20%2Bsalary&utm_content=253238998067&s=google&k=%2Bdata%20%2Bscientist%20%2Bsalary&gclid=CjwKCAjwo_HdBRBjEiwAiPPXpI5Hd_IC0S2YVkhnL3viYTKye8ogabLdtyRBCvIY-Nx1_kLWvOD9whoC8LsQAvD_BwE">

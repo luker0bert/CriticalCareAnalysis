@@ -22,18 +22,18 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-engine = create_engine("sqlite:///db/mimic.db")
+# engine = create_engine("sqlite:///db/mimic.db")
 
-#reflect an existing database into a new model
-Base = automap_base()
+# #reflect an existing database into a new model
+# Base = automap_base()
 
-# reflect the tables
-Base.prepare(engine, reflect=True)
+# # reflect the tables
+# Base.prepare(engine, reflect=True)
 
-# Save reference to each table
-labs = Base.classes.labsNew
-survived = Base.classes.survived
-died = Base.classes.died
+# # Save reference to each table
+# labs = Base.classes.labsNew
+# survived = Base.classes.survived
+# died = Base.classes.died
 
 @app.route("/")
 def index():
@@ -45,8 +45,13 @@ def teampage():
     """Return the teampage."""
     return render_template("teampage.html")
 
+@app.route("/data")
+def data():
+    """Return the data."""
+    return "data links here"
+
 # @app.route("/data/labs")
-# def data():
+# def datalabs():
 #     session = Session(engine)
 #     results = session.query(labs).all()
 
@@ -86,7 +91,7 @@ def teampage():
     # return jsonify(all_data)
 
 # @app.route("/data/died")
-# def data():
+# def datadied():
 #     session = Session(engine)
 #     results = session.query(died).all()
 
@@ -116,8 +121,8 @@ def teampage():
 
     # return jsonify(all_data)
 
-    # @app.route("/data/died")
-# def data():
+    # @app.route("/data/survived")
+# def datasurvived():
 #     session = Session(engine)
 #     results = session.query(survived).all()
 

@@ -121,7 +121,7 @@ ul.nav a:hover {
   padding: 20px;
   margin: 0;
   background: black;
-  background-image: url("https://github.com/Jccommander/LeadingCausesofDeathUSA/blob/master/leading-causes-of-death/static/images/parallax.jpg?raw=true");
+  background-image: url("#");
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
